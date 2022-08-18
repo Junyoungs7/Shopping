@@ -11,9 +11,6 @@ public class MainController {
         return "mainHome";
     }
 
-    @GetMapping("/posts")
-    public String postsRead(){
-        return "notice/postsRead";
-    }
+
 
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div class="col-md-12">
+        <a th:href="@{/posts/postsSave}" role="button" class="btn btn-primary">글 등록</a>
+    </div>
+    <br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">게시글 번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">최종수정일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="posts : ${postsList}">
+            <td th:text="${posts.id}">1</td>
+            <td th:text="${posts.title}">1</td>
+            <td th:text="${posts.author}">1</td>
+            <td th:text="${posts.modifiedDate}">1</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
