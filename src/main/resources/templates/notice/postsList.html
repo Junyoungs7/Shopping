@@ -20,10 +20,10 @@
         </thead>
         <tbody>
         <tr th:each="posts : ${postsList}">
-            <td th:text="${posts.id}">1</td>
-            <td th:text="${posts.title}">1</td>
-            <td th:text="${posts.author}">1</td>
-            <td th:text="${posts.modifiedDate}">1</td>
+            <td th:text="${posts.id}">null</td>
+            <td> <a th:href="@{|/posts/update/${posts.id}|}" th:text="${posts.title}">null</a> </td>
+            <td th:text="${posts.author}">null</td>
+            <td th:text="${posts.modifiedDate}">null</td>
         </tr>
         </tbody>
     </table>
