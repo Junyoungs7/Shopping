@@ -1,5 +1,6 @@
 package com.saehan.shop.web;
 
+import com.saehan.shop.config.auth.LoginUser;
 import com.saehan.shop.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,9 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class MainController {
 
-    private final HttpSession httpSession;
-
     @GetMapping("/")
-    public String mainHome(Model model){
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+    public String mainHome(Model model, @LoginUser SessionUser user){
+
         if(user != null){
             model.addAttribute("userName", user.getName());
         }
