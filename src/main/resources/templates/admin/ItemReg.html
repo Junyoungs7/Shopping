@@ -13,11 +13,11 @@
                 </div>
                 <div class="form-group">
                     <label for="price" class="form-label mt-4">가격</label>
-                    <input type="text" class="form-control" id="price"  placeholder="가격을 입력해주세요.">
+                    <input type="number" class="form-control" id="price"  placeholder="가격을 입력해주세요.">
                 </div>
                 <div class="form-group">
                     <label for="stockNumber" class="form-label mt-4">수량</label>
-                    <input type="text" class="form-control" id="stockNumber"  placeholder="수량을 입력해주세요.">
+                    <input type="number" class="form-control" id="stockNumber"  placeholder="수량을 입력해주세요.">
                 </div>
                 <div class="form-group">
                     <label for="itemDetail" class="form-label mt-4">상품 상세 설명</label>
@@ -28,8 +28,8 @@
                         <label class="input-group-text" for="itemSellStatus">상품 판매 상태</label>
                         <select class="form-select" id="itemSellStatus">
                             <option selected>선택</option>
-                            <option value="1">판매</option>
-                            <option value="2">품절</option>
+                            <option value="SELL">판매</option>
+                            <option value="SOLD_OUT">품절</option>
                         </select>
                     </div>
                 </div>
@@ -38,15 +38,15 @@
                         <label class="input-group-text" for="itemCategory">상품 카테고리</label>
                         <select class="form-select" id="itemCategory">
                             <option selected>선택</option>
-                            <option value="1">손잡이/도어락</option>
-                            <option value="2">도어용품</option>
-                            <option value="3">경첩</option>
-                            <option value="4">철물</option>
-                            <option value="5">수공구/전동공구/잡화류</option>
-                            <option value="6">우편함/ 택배함</option>
-                            <option value="7">바퀴/가구다리</option>
-                            <option value="8">전기용품</option>
-                            <option value="9">수도/수전/욕실자제</option>
+                            <option value="Handle">손잡이/도어락</option>
+                            <option value="DoorAccessories">도어용품</option>
+                            <option value="Hinge">경첩</option>
+                            <option value="hardware">철물</option>
+                            <option value="Hand">수공구/전동공구/잡화류</option>
+                            <option value="Mailbox">우편함/ 택배함</option>
+                            <option value="Wheels">바퀴/가구다리</option>
+                            <option value="electrical">전기용품</option>
+                            <option value="Water">수도/수전/욕실자제</option>
                         </select>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
 
         </form>
         <button type="button" class="btn btn-primary" id="btn-save" >등록</button>
-        <a th:href="@{/posts}" role="button" class="btn btn-secondary">취소</a>
+        <a th:href="@{/admin/itemReg}" role="button" class="btn btn-secondary">취소</a>
     </div>
 </div>
 </html>

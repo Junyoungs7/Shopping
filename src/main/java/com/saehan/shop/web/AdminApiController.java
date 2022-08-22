@@ -15,11 +15,6 @@ public class AdminApiController {
 
     private final ItemService itemService;
 
-    @GetMapping("/admin")
-    public String admin(){
-        return "adminHome";
-    }
-
     @PostMapping("/admin/itemReg")
     public Long save(@RequestBody ItemSaveRequestDto itemSaveRequestDto){
         return itemService.save(itemSaveRequestDto);
