@@ -1,4 +1,4 @@
-package com.saehan.shop.service.posts;
+package com.saehan.shop.service.items;
 
 import com.saehan.shop.domain.item.Item;
 import com.saehan.shop.domain.item.ItemRepository;

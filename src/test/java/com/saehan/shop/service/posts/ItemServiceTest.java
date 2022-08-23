@@ -4,6 +4,7 @@ import com.saehan.shop.domain.item.Item;
 import com.saehan.shop.domain.item.ItemCategory;
 import com.saehan.shop.domain.item.ItemRepository;
 import com.saehan.shop.domain.item.ItemSellStatus;
+import com.saehan.shop.service.items.ItemService;
 import com.saehan.shop.web.dto.ItemSaveRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import javax.persistence.EntityNotFoundException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")

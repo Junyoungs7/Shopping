@@ -1,7 +1,7 @@
 package com.saehan.shop.web;
 
 import com.saehan.shop.domain.item.Item;
-import com.saehan.shop.service.posts.ItemService;
+import com.saehan.shop.service.items.ItemService;
 import com.saehan.shop.web.dto.ItemSearchRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
