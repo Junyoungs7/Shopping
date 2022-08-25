@@ -2,6 +2,7 @@ package com.saehan.shop.web;
 
 import com.saehan.shop.domain.item.Item;
 import com.saehan.shop.service.items.ItemService;
+import com.saehan.shop.web.dto.ItemFormDto;
 import com.saehan.shop.web.dto.ItemSearchRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,7 +27,8 @@ public class AdminController {
     }
 
     @GetMapping("/admin/itemSave")
-    public String itemSave(){
+    public String itemSave(Model model){
+        model.addAttribute("itemFormDto", new ItemFormDto());
         return "admin/ItemReg";
     }
 
