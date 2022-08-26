@@ -35,10 +35,8 @@ public class ItemImg extends BaseTimeEntity {
     }
 
     @Builder
-    public ItemImg(String imgName, String oriImgName, String imgUrl, String repImgYn){
-        this.imgUrl = imgUrl;
-        this.imgName = imgName;
-        this.oriImgName = oriImgName;
+    public ItemImg(Item item, String repImgYn){
+        this.item = item;
         this.repImgYn = repImgYn;
     }
 }

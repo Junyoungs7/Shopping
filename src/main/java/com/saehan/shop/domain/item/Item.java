@@ -1,9 +1,11 @@
 package com.saehan.shop.domain.item;
 
 import com.saehan.shop.domain.BaseTimeEntity;
+import com.saehan.shop.web.dto.ItemFormDto2;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Item extends BaseTimeEntity {
 
     @Id
@@ -48,9 +51,12 @@ public class Item extends BaseTimeEntity {
         this.stockNumber = stockNumber;
     }
 
-    public void update(ItemSellStatus itemSellStatus, int stockNumber, int price){
-        this.itemSellStatus = itemSellStatus;
-        this.stockNumber = stockNumber;
-        this.price = price;
+    public void update(ItemFormDto2 itemFormDto2){
+        this.itemSellStatus = itemFormDto2.getItemSellStatus();
+        this.stockNumber = itemFormDto2.getStockNumber();
+        this.price = itemFormDto2.getPrice();
+        this.itemNm = itemFormDto2.getItemNm();
+        this.itemDetail = itemFormDto2.getItemDetail();
+        this.itemCategory = itemFormDto2.getItemCategory();
     }
 }
