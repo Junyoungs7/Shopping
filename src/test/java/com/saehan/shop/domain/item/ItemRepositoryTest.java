@@ -60,22 +60,22 @@ class ItemRepositoryTest {
         }
     }
 
-    @Test
-    @DisplayName("상품 업데이트 테스트")
-    public void update(){
-        this.createItem();
-
-        ItemSellStatus itemSellStatus = ItemSellStatus.SOLD_OUT;
-        int price = 20000;
-        int stockNumber = 20;
-
-        Item updateItem = itemRepository.findByItemNmAndItemDetail("테스트 상품3", "테스트 상품 상세 설명3");
-        updateItem.update(itemSellStatus, stockNumber, price);
-        itemRepository.save(updateItem);
-
-        List<Item> itemList = itemRepository.findByItemNm("테스트 상품");
-        for(Item item : itemList){
-            System.out.println(item.toString());
-        }
-    }
+//    @Test
+//    @DisplayName("상품 업데이트 테스트")
+//    public void update(){
+//        this.createItem();
+//
+//        ItemSellStatus itemSellStatus = ItemSellStatus.SOLD_OUT;
+//        int price = 20000;
+//        int stockNumber = 20;
+//
+//        Item updateItem = itemRepository.findByItemNmAndItemDetail("테스트 상품3", "테스트 상품 상세 설명3");
+//        updateItem.update(itemSellStatus, stockNumber, price);
+//        itemRepository.save(updateItem);
+//
+//        List<Item> itemList = itemRepository.findByItemNm("테스트 상품");
+//        for(Item item : itemList){
+//            System.out.println(item.toString());
+//        }
+//    }
 }

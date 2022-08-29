@@ -5,6 +5,8 @@ import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.saehan.shop.web.dto.ItemSearchRequestDto;
+import com.saehan.shop.web.dto.MainItemDto;
+import com.saehan.shop.web.dto.QMainItemDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -76,8 +78,38 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
         return StringUtils.isEmpty(searchQuery) ? null : QItem.item.itemNm.like("%" + searchQuery + "%");
     }
 
+    @Override
+    public Page<MainItemDto> getMainItemPage(ItemSearchRequestDto itemSearchRequestDto, Pageable pageable){
+        QItem item= QItem.item;
+        QItemImg itemImg = QItemImg.itemImg;
 
+        List<MainItemDto> results = queryFactory
+                .select(
+                        new QMainItemDto(
+                                item.id,
+                                item.itemNm,
+                                item.itemDetail,
+                                itemImg.imgUrl,
+                                item.price)
+                )
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repImgYn.eq("Y"))
+                .where(itemNmLike(itemSearchRequestDto.getSearchQuery()))
+                .orderBy(item.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
 
+        long total = queryFactory
+                .select(Wildcard.count)
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repImgYn.eq("Y"))
+                .where(itemNmLike(itemSearchRequestDto.getSearchQuery()))
+                .fetchOne();
 
+        return new PageImpl<>(results, pageable, total);
+    }
 
 }

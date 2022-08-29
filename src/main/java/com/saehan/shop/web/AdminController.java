@@ -4,7 +4,6 @@ import com.saehan.shop.domain.item.Item;
 import com.saehan.shop.domain.item.ItemCategory;
 import com.saehan.shop.domain.item.ItemSellStatus;
 import com.saehan.shop.service.items.ItemService;
-import com.saehan.shop.web.dto.ItemFormDto;
 import com.saehan.shop.web.dto.ItemFormDto2;
 import com.saehan.shop.web.dto.ItemSearchRequestDto;
 import lombok.RequiredArgsConstructor;

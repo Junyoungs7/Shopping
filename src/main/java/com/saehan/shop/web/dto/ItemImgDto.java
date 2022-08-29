@@ -2,9 +2,11 @@ package com.saehan.shop.web.dto;
 
 import com.saehan.shop.domain.item.ItemImg;
 import lombok.Getter;
+import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
 @Getter
+@Setter
 public class ItemImgDto {
 
     private Long id;

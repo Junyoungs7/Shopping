@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +56,7 @@ class OrderTest {
     public void cascadeTest(){
         User user = new User("1", "1","1", Role.USER);
         userRepository.save(user);
-        Order orders = new Order(user);
+        Order orders = new Order(user, LocalDateTime.now(), OrderStatus.ORDER);
 
         for(int i = 0; i < 3; i++) {
             Item item = this.createItem();
@@ -76,7 +77,7 @@ class OrderTest {
         User user = new User("1", "1","1", Role.USER);
         userRepository.save(user);
 
-        Order order = new Order(user);
+        Order order = new Order(user, LocalDateTime.now(), OrderStatus.ORDER);
 
         for(int i = 0; i < 3; i++){
             Item item = Item.builder()

@@ -1,6 +1,7 @@
 package com.saehan.shop.domain.item;
 
 import com.saehan.shop.domain.BaseTimeEntity;
+import com.saehan.shop.exception.OutOfStockException;
 import com.saehan.shop.web.dto.ItemFormDto2;
 import lombok.Builder;
 import lombok.Getter;
@@ -58,5 +59,14 @@ public class Item extends BaseTimeEntity {
         this.itemNm = itemFormDto2.getItemNm();
         this.itemDetail = itemFormDto2.getItemDetail();
         this.itemCategory = itemFormDto2.getItemCategory();
+    }
+
+    public void removeStock(int stockNumber){
+
+        int restStock = this.stockNumber - stockNumber;
+        if(restStock < 0){
+            throw new OutOfStockException("상품의 재고가 부족합니다.(현재 재고 수량: " + this.stockNumber +")");
+        }
+        this.stockNumber = restStock;
     }
 }

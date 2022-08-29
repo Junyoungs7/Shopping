@@ -5,6 +5,7 @@ import com.saehan.shop.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -35,8 +36,32 @@ public class Order extends BaseTimeEntity {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @Builder
-    public Order(User user){
+    public Order(User user, LocalDateTime orderDate, OrderStatus orderStatus){
         this.user = user;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+
+    }
+
+    public void addOrderItem(OrderItem orderItem){
+        OrderItem orderItemReal = orderItem.toBuilder().order(this).build();
+        orderItems.add(orderItemReal);
+    }
+
+    public static Order createOrder(User user, List<OrderItem> orderItemList){
+        Order order = Order.builder().user(user).orderDate(LocalDateTime.now()).orderStatus(OrderStatus.ORDER).build();
+        for(OrderItem orderItem : orderItemList)
+            order.addOrderItem(orderItem);
+
+        return order;
+    }
+
+    public int getTotalPrice(){
+        int totalPrice = 0;
+        for(OrderItem orderItem : orderItems){
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
     }
 
 }

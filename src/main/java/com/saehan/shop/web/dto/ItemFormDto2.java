@@ -50,6 +50,8 @@ public class ItemFormDto2 {
     }
 
     public static ItemFormDto2 of(Item item){
+        System.out.println("formdto2 : " + item.getItemNm());
+        System.out.println(modelMapper.map(item, ItemFormDto2.class));
         return modelMapper.map(item, ItemFormDto2.class);
     }
 }

@@ -52,10 +52,10 @@ public class ItemService {
             ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
             itemImgDtoList.add(itemImgDto);
         }
-
         Item item = itemRepository.findById(itemId).orElseThrow(EntityNotFoundException::new);
         ItemFormDto2 itemFormDto2 = ItemFormDto2.of(item);
         itemFormDto2.setItemImgDtoList(itemImgDtoList);
+
         return itemFormDto2;
     }
 
@@ -81,5 +81,9 @@ public class ItemService {
         return itemRepository.getAdminItemPage(itemSearchRequestDto, pageable);
     }
 
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemPage(ItemSearchRequestDto itemSearchRequestDto, Pageable pageable){
+        return itemRepository.getMainItemPage(itemSearchRequestDto, pageable);
+    }
 
 }
