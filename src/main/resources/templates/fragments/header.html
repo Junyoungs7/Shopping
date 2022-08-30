@@ -21,10 +21,16 @@
                         <a class="nav-link active" th:href="@{/oauth2/authorization/google}">구글로그인</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link active" href="/logout">로그아웃</a>
+                        <a class="nav-link active" th:href="@{/cart}">장바구니</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" th:href="@{/orders}">주문 내역</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <a class="nav-link active" th:href="@{/admin}">관리자</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" href="/logout">로그아웃</a>
                     </li>
                 </ul>
                 <form class="d-flex">
