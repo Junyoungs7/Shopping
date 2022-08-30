@@ -43,17 +43,9 @@ public class OrderController {
             return new ResponseEntity<String> (sb.toString(), HttpStatus.BAD_REQUEST);
         }
 
-
-
-        String email = principal.getName();
         Long orderId;
 
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-
-        System.out.println("email : " + email);
-        System.out.println("sessionUser : " + sessionUser.getEmail());
-        System.out.println("orderDto - itemId : " + orderDto.getItemId());
-        System.out.println("orderDto - itemCount : " + orderDto.getCount());
 
 
         try{
@@ -89,6 +81,5 @@ public class OrderController {
         }
         orderService.cancelOrder(orderId);
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
-
     }
 }

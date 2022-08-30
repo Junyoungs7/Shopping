@@ -4,8 +4,10 @@ import com.saehan.shop.domain.item.Item;
 import com.saehan.shop.domain.item.ItemCategory;
 import com.saehan.shop.domain.item.ItemSellStatus;
 import com.saehan.shop.service.items.ItemService;
+import com.saehan.shop.service.order.OrderService;
 import com.saehan.shop.web.dto.ItemFormDto2;
 import com.saehan.shop.web.dto.ItemSearchRequestDto;
+import com.saehan.shop.web.dto.OrderListUserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +28,7 @@ import java.util.Optional;
 public class AdminController {
 
     private final ItemService itemService;
+    private final OrderService orderService;
 
     @GetMapping("/admin")
     public String admin(){
@@ -108,5 +111,15 @@ public class AdminController {
         model.addAttribute("maxPage", 10);
 
         return "admin/ItemList";
+    }
+
+    @GetMapping(value = {"/admin/orderList","/admin/orderList/{page}"})
+    public String orderList(@PathVariable("page")Optional<Integer> page, Model model){
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
+        Page<OrderListUserDto> orderListUserDtos = orderService.userOrderList(pageable);
+        model.addAttribute("orders", orderListUserDtos);
+        model.addAttribute("page", pageable.getPageNumber());
+        model.addAttribute("maxPage", 10);
+        return "admin/orderList";
     }
 }

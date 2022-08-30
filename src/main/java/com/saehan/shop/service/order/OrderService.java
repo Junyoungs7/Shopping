@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
@@ -113,7 +114,23 @@ public class OrderService {
         orderRepository.save(order);
 
         return order.getId();
-
     }
+
+    @Transactional(readOnly = true)
+    public Page<OrderListUserDto> userOrderList(Pageable pageable){
+        List<Order> orderList = orderRepository.findAllOrders(pageable);
+        Long orderCount = orderRepository.countOrdersByOrderStatus();
+
+        List<OrderListUserDto> orderListUserDtos = new ArrayList<>();
+
+        for(Order order : orderList){
+            OrderListUserDto orderListUserDto = new OrderListUserDto(order);
+            orderListUserDtos.add(orderListUserDto);
+        }
+
+        return new PageImpl<OrderListUserDto>(orderListUserDtos, pageable, orderCount);
+    }
+
+
 
 }
